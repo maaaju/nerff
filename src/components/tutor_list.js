@@ -14,21 +14,26 @@ const instructions = 'Stay tuned for the next commit'
 export default class TutorList extends Component {
   constructor(props) {
     super(props)
-    const { age, name, description, topics, mail, phone } = this.props
+    const { tutor } = this.props
     this.state = {
       tutor: {
-        name: name,
-        age: age,
-        description: description,
-        topics: topics,
-        mail: mail,
-        phone: phone,
+        name: '',
+        age: '',
+        description: '',
+        topics: '',
+        mail: '',
+        phone: '',
       },
     }
   }
 
+  componentWillMount() {
+    const { initTutor } = this.props
+    initTutor(123)
+  }
+
   render() {
-    const { textInput } = this.state
+    const { tutor } = this.props
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to NNERF!</Text>
@@ -42,7 +47,7 @@ export default class TutorList extends Component {
           onChangeText={text => {
             this.setState({ tutor: { ...this.state.tutor, name: text } })
           }}
-          value={this.state.tutor.name}
+          value={tutor.name}
         />
         <TextInput
           style={{
@@ -54,7 +59,7 @@ export default class TutorList extends Component {
           onChangeText={text => {
             this.setState({ tutor: { ...this.state.tutor, description: text } })
           }}
-          value={this.state.tutor.description}
+          value={tutor.description}
         />
         <TextInput
           style={{
@@ -66,7 +71,7 @@ export default class TutorList extends Component {
           onChangeText={text => {
             this.setState({ tutor: { ...this.state.tutor, age: text } })
           }}
-          value={this.state.tutor.age}
+          value={tutor.age}
         />
         <TextInput
           style={{
@@ -78,7 +83,7 @@ export default class TutorList extends Component {
           onChangeText={text => {
             this.setState({ tutor: { ...this.state.tutor, topics: text } })
           }}
-          value={this.state.tutor.topics}
+          value={tutor.topics}
         />
         <TextInput
           style={{
@@ -90,7 +95,7 @@ export default class TutorList extends Component {
           onChangeText={text => {
             this.setState({ tutor: { ...this.state.tutor, mail: text } })
           }}
-          value={this.state.tutor.mail}
+          value={tutor.mail}
         />
         <TextInput
           style={{
@@ -102,7 +107,7 @@ export default class TutorList extends Component {
           onChangeText={text => {
             this.setState({ tutor: { ...this.state.tutor, phone: text } })
           }}
-          value={this.state.tutor.phone}
+          value={tutor.phone}
         />
         <Button
           onPress={() => {

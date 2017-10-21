@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
+import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import { Platform, AppRegistry } from 'react-native'
 import itemApp from './src/reducers'
@@ -13,7 +14,7 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 })
 
-const store = createStore(itemApp, applyMiddleware(logger))
+const store = createStore(itemApp, applyMiddleware(thunk))
 
 export default class TutorList extends Component<{}> {
   render() {

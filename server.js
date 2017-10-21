@@ -37,7 +37,8 @@ app.use((req, res, next) => {
 app.get('/api/tutor/:tutorId', async (req, res) => {
   const { tutorId } = req.params
   const tutorsSnapshot = await db.ref(`/tutors/${tutorId}`).once('value')
-  res.send(tutorsSnapshot.val())
+  const tutor = tutorsSnapshot.val()
+  res.send(tutor[Object.keys(tutor)[0]])
 })
 
 app.post('/api/tutors/new', (req, res) => {

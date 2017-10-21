@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import TutorList from '../components/tutor_list'
+import { getTutor } from '../actions/tutor'
 
-const mapStateToProps = state => ({
-  name: state.tutor.name,
-  age: state.tutor.age,
-  topics: state.tutor.topics,
-  mail: state.tutor.mail,
-  phone: state.tutor.phone,
-  description: state.tutor.description,
+const mapDispatchToProps = dispatch => ({
+  initTutor: tutorId => {
+    dispatch(getTutor(tutorId))
+  },
 })
 
-const TutorListContainer = connect(mapStateToProps)(TutorList)
+const mapStateToProps = state => ({
+  tutor: state.tutor.currentTutor,
+})
+
+const TutorListContainer = connect(mapStateToProps, mapDispatchToProps)(
+  TutorList
+)
 
 export default TutorListContainer

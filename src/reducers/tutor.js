@@ -1,22 +1,11 @@
 const initialState = {
-  name: 'action.name',
-  age: '0',
-  topics: 'action.topics',
-  mail: 'action.mail',
-  phone: '0',
-  description: 'action.description',
+  currentTutor: {},
 }
 const tutor = (state = initialState, action = {}) => {
   switch (action.type) {
-    case 'UPDATE_TUTOR': {
+    case 'SET_TUTOR': {
       return {
-        ...state,
-        name: action.name,
-        age: action.age,
-        topics: action.topics,
-        mail: action.mail,
-        phone: action.phone,
-        description: action.description,
+        currentTutor: action.tutor,
       }
     }
     default:

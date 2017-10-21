@@ -1,9 +1,9 @@
 const initialState = {
   name: 'action.name',
-  age: 0,
+  age: '0',
   topics: 'action.topics',
   mail: 'action.mail',
-  phone: 0,
+  phone: '0',
   description: 'action.description',
 }
 const tutor = (state = initialState, action = {}) => {

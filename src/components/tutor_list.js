@@ -6,10 +6,8 @@ import {
   TextInput,
   Button,
 } from 'react-native'
-
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-
-const instructions = 'Stay tuned for the next commit'
 
 export default class TutorList extends Component {
   constructor(props) {
@@ -113,7 +111,7 @@ export default class TutorList extends Component {
           onPress={() => {
             saveTutor(123, tutor)
           }}
-          title="Learn More"
+          title="Save"
           color="#841584"
         />
       </View>
@@ -139,5 +137,12 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 })
+
+TutorList.PropTypes = {
+  tutor: PropTypes.object.isRequired,
+  updateTutor: PropTypes.func.isRequired,
+  saveTutor: PropTypes.func.isRequired,
+  initTutor: PropTypes.func.isRequired,
+}
 
 AppRegistry.registerComponent('TutorList', () => TutorList)

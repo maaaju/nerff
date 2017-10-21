@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import TutorList from '../components/tutor_list'
-import { getTutor } from '../actions/tutor'
+import { getTutor, updateTutorField, saveTutor } from '../actions/tutor'
 
 const mapDispatchToProps = dispatch => ({
   initTutor: tutorId => {
     dispatch(getTutor(tutorId))
+  },
+  updateTutor: tutor => {
+    dispatch(updateTutorField(tutor))
+  },
+  saveTutor: (tutorId, tutor) => {
+    dispatch(saveTutor(tutorId, tutor))
   },
 })
 

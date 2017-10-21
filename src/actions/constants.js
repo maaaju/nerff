@@ -1,4 +1,0 @@
-const UPDATE_TUTOR = 'UPDATE_TUTOR'
-const GET_TUTOR = 'GET_TUTOR'
-
-export { UPDATE_TUTOR, GET_TUTOR }

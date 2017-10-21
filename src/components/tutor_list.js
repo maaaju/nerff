@@ -17,7 +17,7 @@ export default class TutorList extends Component {
     const { tutor } = this.props
     this.state = {
       tutor: {
-        name: '',
+        name: tutor.name,
         age: '',
         description: '',
         topics: '',
@@ -33,7 +33,7 @@ export default class TutorList extends Component {
   }
 
   render() {
-    const { tutor } = this.props
+    const { tutor, updateTutor, saveTutor } = this.props
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to NNERF!</Text>
@@ -45,7 +45,7 @@ export default class TutorList extends Component {
             borderWidth: 1,
           }}
           onChangeText={text => {
-            this.setState({ tutor: { ...this.state.tutor, name: text } })
+            updateTutor({ ...tutor, name: text })
           }}
           value={tutor.name}
         />
@@ -57,7 +57,7 @@ export default class TutorList extends Component {
             borderWidth: 1,
           }}
           onChangeText={text => {
-            this.setState({ tutor: { ...this.state.tutor, description: text } })
+            updateTutor({ ...tutor, description: text })
           }}
           value={tutor.description}
         />
@@ -69,7 +69,7 @@ export default class TutorList extends Component {
             borderWidth: 1,
           }}
           onChangeText={text => {
-            this.setState({ tutor: { ...this.state.tutor, age: text } })
+            updateTutor({ ...tutor, age: text })
           }}
           value={tutor.age}
         />
@@ -81,7 +81,7 @@ export default class TutorList extends Component {
             borderWidth: 1,
           }}
           onChangeText={text => {
-            this.setState({ tutor: { ...this.state.tutor, topics: text } })
+            updateTutor({ ...tutor, topics: text })
           }}
           value={tutor.topics}
         />
@@ -93,7 +93,7 @@ export default class TutorList extends Component {
             borderWidth: 1,
           }}
           onChangeText={text => {
-            this.setState({ tutor: { ...this.state.tutor, mail: text } })
+            updateTutor({ ...tutor, mail: text })
           }}
           value={tutor.mail}
         />
@@ -105,13 +105,13 @@ export default class TutorList extends Component {
             borderWidth: 1,
           }}
           onChangeText={text => {
-            this.setState({ tutor: { ...this.state.tutor, phone: text } })
+            updateTutor({ ...tutor, phone: text })
           }}
           value={tutor.phone}
         />
         <Button
           onPress={() => {
-            console.log('lol')
+            saveTutor(123, tutor)
           }}
           title="Learn More"
           color="#841584"

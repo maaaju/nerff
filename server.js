@@ -38,18 +38,42 @@ app.get('/api/tutor/:tutorId', async (req, res) => {
   const { tutorId } = req.params
   const tutorsSnapshot = await db.ref(`/tutors/${tutorId}`).once('value')
   const tutor = tutorsSnapshot.val()
-  res.send(tutor[Object.keys(tutor)[0]])
+  res.send(tutor)
 })
 
-app.post('/api/tutors/new', (req, res) => {
-  const { name, age, topics, description, mail, phone, tutorId } = req.body
-  db
-    .ref(`/tutors/${tutorId}`)
-    .push({ name, age, topics, description, mail, phone }, error => {
-      if (error) {
-        res.sendStatus(501)
-      } else {
-        res.sendStatus(201)
-      }
-    })
+app.post('/api/tutor/:tutorId', async (req, res) => {
+  const { tutorId } = req.params
+  const { tutor } = req.body
+  console.log(tutor.name)
+  db.ref(`/tutors/${tutorId}`).update({
+    name: tutor.name,
+    description: tutor.description,
+    age: tutor.age,
+    topics: tutor.topics,
+    mail: tutor.mail,
+    phone: tutor.phone,
+  },
+  error => {
+    if (error) {
+      console.log(error)
+      res.sendStatus(501)
+    } else {
+      console.log('ok')
+      res.sendStatus(201)
+    }
+  })
 })
+
+// Only used to insert a starting document.
+// app.post('/api/tutors/new', (req, res) => {
+//   const { name, age, topics, description, mail, phone, tutorId } = req.body
+//   db
+//     .ref(`/tutors/${tutorId}`)
+//     .push({ name, age, topics, description, mail, phone }, error => {
+//       if (error) {
+//         res.sendStatus(501)
+//       } else {
+//         res.sendStatus(201)
+//       }
+//     })
+// })
